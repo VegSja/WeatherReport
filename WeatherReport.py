@@ -1,7 +1,11 @@
 import time
 import os
+import RPi.GPIO as GPIO
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen as uReq
+
+GPIO.setwarnings(False)
+GPIO.setup(2, GPIO.IN)
 
 #Defines wheter or not the weather is nice
 def weatherMood(weather):

@@ -9,20 +9,23 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(10, GPIO.IN)
 
-def badWeather():
+def badWeather(weather):
 	print("red")
-	os.system("say 'Good day! Today's weather is forecasted to be: '")
-	os.system( "say " + weather)
+	weatherOs= "say " + "Good day! Todays weather is forecasted to be: " + weather
+        os.system(weatherOs)
+	time.sleep(3)
 
-def mehWeather():
+def mehWeather(weather):
 	print("Yellow")
-	os.system("say 'Good day! Today's weather is forecasted to be: '")
-	os.system( "say " + weather)
+	weatherOs= "say " + "Good day! Todays weather is forecasted to be: " + weather
+	os.system(weatherOs)
+	time.sleep(3)
 
 def goodWeather(weather):
 	print("Green")
-	os.system("say 'Good day! Today's weather is forecasted to be: '")
-	os.system( "say " + weather)
+	print(weather) 
+        weatherOs= "say Good day! Todays weather is forecasted to be: "
+	time.sleep(3)
 
 #Defines wheter or not the weather is nice
 def weatherMood(weather):

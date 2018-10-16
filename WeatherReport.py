@@ -9,29 +9,57 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(10, GPIO.IN)
 
+GPIO.setup(4, GPIO.OUT) #Red
+GPIO.setup(3, GPIO.OUT) #Yellow
+GPIO.setup(2, GPIO.OUT) #Green
+
+#Starts Light Blinking
+def blink(color):
+	print("Starting " + color + "Blink")
+	for x in range (0, 10):
+		print(x)
+		if color == "RED":
+			GPIO.output(4, GPIO.HIGH)
+		elif color == "YELLOW":
+			GPIO.output(3, GPIO.HIGH)
+		elif color == "GREEN":
+			GPIO.output(2, GPIO.HIGH)
+		else:
+			return
+		print("Turning off lights")
+		time.sleep(1)
+		GPIO.output(2, GPIO.LOW)
+		GPIO.output(3, GPIO.LOW)
+		GPIO.output(4, GPIO.LOW)
+		time.sleep(1)
+
 def badWeather(weather):
 	print("red")
-	weatherOs= "say " + "Good day! Todays weather is forecasted to be: " + weather
+	weatherOs= "say " + "Hello! Todays weather is forecasted to be: " + weather + "It is time to get depressed"
         os.system(weatherOs)
-	time.sleep(3)
+	blink("RED")
+	time.sleep(6)
 
 def mehWeather(weather):
 	print("Yellow")
-	weatherOs= "say " + "Good day! Todays weather is forecasted to be: " + weather
+	weatherOs= "say " + "Hello! Todays weather is forecasted to be: " + weather
 	os.system(weatherOs)
+	blink("YELLOW")
 	time.sleep(3)
 
 def goodWeather(weather):
 	print("Green")
 	print(weather) 
-        weatherOs= "say Good day! Todays weather is forecasted to be: "
-	time.sleep(3)
+        weatherOs= "say " + "Hello! Todays weather is forecasted to be: " + weather
+	os.system(weatherOs)
+	blink("GREEN")
+	time.sleep(6)
 
 #Defines wheter or not the weather is nice
 def weatherMood(weather):
-	if weather == "Heavy rain." or weather == "Rain." or weather == "Kraftige regnbyger." or weather == "Kraftig regn.":
+	if weather == "Heavy rain." or weather == "Rain." or weather == "Kraftige regnbyger." or weather == "Kraftig regn." or weather == "Rain showers.":
 		badWeather(weather)
-	elif weather == "Cloudy." or weather == "Lette regnbyger.":
+	elif weather == "Cloudy." or weather == "Lette regnbyger." or weather == "Lett regn.":
 		mehWeather(weather)
 	elif weather == "Partly cloudy." or weather == "Lettskyet." or weather == "Clear sky." or "Klarvær.":
 		goodWeather(weather)
@@ -74,6 +102,9 @@ def checkButton():
 	else:
 		os.system('clear')
 		print ("Waiting for buttonpress")
+		GPIO.output(2, GPIO.LOW)
+                GPIO.output(3, GPIO.LOW)
+                GPIO.output(4, GPIO.LOW)
 	time.sleep(1)
 while True:
 	checkButton()

@@ -58,5 +58,14 @@ def startScreen():
 	else:
 		print("Error")
 		newURL()
+def checkButton():
+	if(GPIO.input(2) == False):
+		print("Button Pressed")
+		getWebsite()
+	else:
+		os.system('clear')
+		print ("Waiting for buttonpress")
+while True:
+	checkButton()
 
 startScreen()

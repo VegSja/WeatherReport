@@ -7,7 +7,7 @@ from urllib import urlopen as uReq
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(2, GPIO.IN)
+GPIO.setup(10, GPIO.IN)
 
 #Defines wheter or not the weather is nice
 def weatherMood(weather):
@@ -65,12 +65,13 @@ def startScreen():
 		print("Error")
 		newURL()
 def checkButton():
-	if(GPIO.input(2) == False):
+	if(GPIO.input(10)):
 		print("Button Pressed")
-	#	getWebsite()
+		getURL()
 	else:
 		os.system('clear')
 		print ("Waiting for buttonpress")
+	time.sleep(1)
 while True:
 	checkButton()
 

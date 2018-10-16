@@ -1,9 +1,11 @@
+# coding=utf-8
 import time
 import os
 import RPi.GPIO as GPIO
 from bs4 import BeautifulSoup as soup
-from urllib.request import urlopen as uReq
+from urllib import urlopen as uReq
 
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(2, GPIO.IN)
 
@@ -65,11 +67,10 @@ def startScreen():
 def checkButton():
 	if(GPIO.input(2) == False):
 		print("Button Pressed")
-		getWebsite()
+	#	getWebsite()
 	else:
 		os.system('clear')
 		print ("Waiting for buttonpress")
 while True:
 	checkButton()
 
-startScreen()

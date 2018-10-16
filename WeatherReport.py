@@ -9,21 +9,33 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(10, GPIO.IN)
 
+def badWeather():
+	print("red")
+	os.system("say 'Good day! Today's weather is forecasted to be: '")
+	os.system( "say " + weather)
+
+def mehWeather():
+	print("Yellow")
+	os.system("say 'Good day! Today's weather is forecasted to be: '")
+	os.system( "say " + weather)
+
+def goodWeather(weather):
+	print("Green")
+	os.system("say 'Good day! Today's weather is forecasted to be: '")
+	os.system( "say " + weather)
+
 #Defines wheter or not the weather is nice
 def weatherMood(weather):
-	osWeather = "say'Good morning! Today's weather is forecasted to be: '" + "say" + weather
 	if weather == "Heavy rain." or weather == "Rain." or weather == "Kraftige regnbyger." or weather == "Kraftig regn.":
-		print("red")
-		os.system(osWeather)
+		badWeather(weather)
 	elif weather == "Cloudy." or weather == "Lette regnbyger.":
-		print("yellow")
-		os.system(osWeather)
+		mehWeather(weather)
 	elif weather == "Partly cloudy." or weather == "Lettskyet." or weather == "Clear sky." or "Klarvær.":
-		print("green")
-		os.system(osWeather)
+		goodWeather(weather)
+
 	else:
 		print("Unable to decide")
-		os.system("Oh, Something went wrong")
+		os.system("Oh, Something went wrong with the weather recognition")
 
 #Finds the weather for today
 def findToday(page_soup):

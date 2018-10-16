@@ -11,14 +11,19 @@ GPIO.setup(10, GPIO.IN)
 
 #Defines wheter or not the weather is nice
 def weatherMood(weather):
+	osWeather = "say'Good morning! Today's weather is forecasted to be: '" + "say" + weather
 	if weather == "Heavy rain." or weather == "Rain." or weather == "Kraftige regnbyger." or weather == "Kraftig regn.":
 		print("red")
+		os.system(osWeather)
 	elif weather == "Cloudy." or weather == "Lette regnbyger.":
 		print("yellow")
+		os.system(osWeather)
 	elif weather == "Partly cloudy." or weather == "Lettskyet." or weather == "Clear sky." or "Klarvær.":
 		print("green")
+		os.system(osWeather)
 	else:
 		print("Unable to decide")
+		os.system("Oh, Something went wrong")
 
 #Finds the weather for today
 def findToday(page_soup):
@@ -47,23 +52,6 @@ def getURL():
 	f.close()
 	getWebsite(url)
 
-def newURL():
-	f = open("userpref.txt", "w")
-	url = input("What is your new URL?: ")
-	f.write("URL:\n" + url)
-	f.close()
-	getWebsite(url)
-
-def startScreen():
-	print("What do you want to do?:\n1. Check weather\n2. Change location" )
-	choice = input("");
-	if choice == "1":
-		getURL()
-	elif choice == "2":
-		newURL()
-	else:
-		print("Error")
-		newURL()
 def checkButton():
 	if(GPIO.input(10)):
 		print("Button Pressed")
